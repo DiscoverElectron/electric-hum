@@ -1,0 +1,22 @@
+{
+  "name":        "electric-hum",
+  "description": "A colored noise generator, built with Electron.",
+  "version":     "0.0.1",
+  "license":     "MIT",
+
+  "private": true,
+  "main":    "index.js",
+
+  "repository": {
+    "type": "git",
+    "url":  "git@github.com:DiscoverElectron/electric-hum.git"
+  },
+
+  "scripts": {
+    "start": "electron ."
+  },
+
+  "devDependencies": {
+    "electron-prebuilt": "^0.35.1"
+  }
+}

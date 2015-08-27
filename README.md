@@ -5,6 +5,11 @@ A colored noise generator, built on [Electron](http://electron.atom.io/).
 See <https://www.discoverelectron.com/apps/electric-hum/> for more details.
 
 
+## Running
+
+Just execute `npm start`.
+
+
 ## Meta
 
 * Code: `git clone git://github.com/DiscoverElectron/electric-hum.git`
