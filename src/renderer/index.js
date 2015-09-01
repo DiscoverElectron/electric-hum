@@ -46,5 +46,8 @@ const stop = function () {
   gain = null
 }
 
-start()
-setTimeout(stop, 10000)
+const electron = require('electron')
+const ipc = electron.ipcRenderer
+
+ipc.on('start', start)
+ipc.on('stop', stop)

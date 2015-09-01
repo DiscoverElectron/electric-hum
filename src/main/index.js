@@ -35,6 +35,25 @@ const createTray = () => {
 
   const trayMenu = Menu.buildFromTemplate([
     {
+      label: 'Start',
+      type: 'radio',
+      checked: false,
+      click: () => {
+        win.webContents.send('start')
+      }
+    },
+    {
+      label: 'Stop',
+      type: 'radio',
+      checked: true,
+      click: () => {
+        win.webContents.send('stop')
+      }
+    },
+    {
+      type: 'separator'
+    },
+    {
       label: 'Preferences...',
       click: () => {
         win.show()
