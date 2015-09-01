@@ -3,28 +3,54 @@
 const path = require('path')
 const electron = require('electron')
 const app = electron.app
+const Menu = electron.Menu
 const Tray = electron.Tray
 const BrowserWindow = electron.BrowserWindow
 
 let tray = null
 let win = null
 
+const createMenu = () => {
+  const appMenu = Menu.buildFromTemplate([
+    {
+      label: 'File',
+      submenu: [
+        {
+          label: 'Quit',
+          accelerator: 'CmdOrCtrl+Q',
+          click: () => {
+            win.destroy()
+          }
+        }
+      ]
+    }
+  ])
+  Menu.setApplicationMenu(appMenu)
+}
+
 const createTray = () => {
   const iconPath = path.resolve(__dirname, '../../resources/IconTemplate.png')
 
   tray = new Tray(iconPath)
 
-  tray.on('click', () => {
-    if (win.isVisible()) {
-      win.hide()
-    } else {
-      win.show()
+  const trayMenu = Menu.buildFromTemplate([
+    {
+      label: 'Preferences...',
+      click: () => {
+        win.show()
+      }
+    },
+    {
+      type: 'separator'
+    },
+    {
+      label: 'Quit',
+      click: () => {
+        win.destroy()
+      }
     }
-  })
-
-  tray.on('double-click', () => {
-    win.destroy()
-  })
+  ])
+  tray.setContextMenu(trayMenu)
 }
 
 const createWindow = () => {
@@ -53,6 +79,7 @@ app.on('window-all-closed', () => {
 })
 
 app.on('ready', () => {
+  createMenu()
   createTray()
   createWindow()
 })
